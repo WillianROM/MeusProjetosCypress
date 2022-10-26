@@ -14,9 +14,11 @@ describe('Acessar o site',()=>{
             //Campos de Texto
             cy.get('input#id_campo_nome').click().type('João')
 
-            cy.xpath('//input[@name="sobrenome"]').click().type('Barro')
+            cy.xpath('//input[@name="sobrenome"]').click().type('Barro').screenshot('sobrenome')
 
-            cy.get('input#id_campo_email').click().type('joaobarro@birds.com')
+            cy.get('input#id_campo_email').click().type('joaobarro@birds.com').debug()
+
+            cy.pause()
 
             cy.get('textarea#id_campo_descricao').type('Eu sou um pássaro da família Barro, muito prazer.')
             
@@ -36,8 +38,10 @@ describe('Acessar o site',()=>{
 
 
             cy.get('div#mui-component-select-linguagemProgramacao').type('JavaScript')
-            cy.timeout({timeouy:5000})
+            cy.timeout({timeout:5000})
             cy.get('body').type('{enter}')
+
+            cy.wait(2000)
 
 
             const tags = ['C#','PYTHON','JAVASCRIPT']
@@ -49,6 +53,8 @@ describe('Acessar o site',()=>{
 
             })
 
+
+            cy.screenshot()
             
 
         })
