@@ -23,3 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import el from './locators'
+
+let data = {
+    nome: "João",
+    sobrenome: "Barro",
+    email: "joaobarro@birds.com",
+    descricao: "Eu sou um pássaro da família Barro, muito prazer."
+}
+
+Cypress.Commands.add('fillOutTextFields', () => {
+    cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
+    .should('exist').and('be.visible').and('be.enabled')
+//Campos de Texto
+    cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
+        .click()
+        .type(data.nome)
+    cy.xpath(el.CAMP_TXT.INPUT_LASTNAME_FIELD)
+        .click()
+        .type(data.sobrenome)
+    cy.get(el.CAMP_TXT.INPUT_EMAIL_FIELD)
+        .click()
+        .type(data.email)
+        .debug()
+    cy.get(el.CAMP_TXT.TEXTAREA_DESCRIPTION_FIELD)
+        .type(data.descricao)
+})
