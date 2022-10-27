@@ -4,33 +4,14 @@ import el from '../support/locators'
 
 describe('Acessar o site',()=>{
     before(()=>{
-        cy.visit('https://qautomatizado-db08c.web.app/')
+        cy.visit('/')
         cy.get('button.MuiButtonBase-root')
             .click()
     })
 
 
         it('',()=>{
-            cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
-                .should('exist').and('be.visible').and('be.enabled')
-
-            //Campos de Texto
-            cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
-                .click()
-                .type('João')
-
-            cy.xpath(INPUT_LASTNAME_FIELD)
-                .click()
-                .type('Barro')
-
-            cy.get(INPUT_EMAIL_FIELD)
-                .click()
-                .type('joaobarro@birds.com')
-                .debug()
-
-            cy.get(TEXTAREA_DESCRIPTION_FIELD)
-                .type('Eu sou um pássaro da família Barro, muito prazer.')
-            
+            cy.fillOutTextFields()            
 
             //Botões de radio
             cy.get(el.RADIO_BUTTON.INPUT_LINKEDIN_RADIO_BUTTON).check()
