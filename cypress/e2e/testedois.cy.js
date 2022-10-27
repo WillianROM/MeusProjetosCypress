@@ -10,38 +10,18 @@ describe('Acessar o site',()=>{
     })
 
 
-        it('',()=>{
+        it('Should fill out the form',()=>{
+            //Preenchimento das caixas de texto
             cy.fillOutTextFields()            
 
             //Botões de radio
             cy.get(el.RADIO_BUTTON.INPUT_LINKEDIN_RADIO_BUTTON).check()
 
             //Checkbox
-            cy.get('input#id_checkbox_selenium').check()
-
-            cy.get('input#id_checkbox_robotFramework').check() 
-
-            cy.get('input#id_checkbox_selenium').uncheck() //Desmarca a caixa de seleção
-
+            cy.checkAndUncheckCheckbox()
+     
             //Caixas de Seleção
-            cy.get('select#id_campo_linguagemProgramacaoSimples').select('C#')
-
-
-            cy.get('div#mui-component-select-linguagemProgramacao').type('JavaScript')
-            cy.timeout({timeout:5000})
-            cy.get('body').type('{enter}')
-
-            cy.wait(2000)
-
-
-            const tags = ['C#','PYTHON','JAVASCRIPT']
-            tags.forEach(valor =>{
-                cy.get('input[name="multiplaSelecao"]')
-                    .type(valor)
-                    .type('{downArrow}')
-                    .type('{enter}')
-
-            })
+            cy.checkSelectBoxes()
 
 
             cy.get('#btn_confirm')
@@ -52,8 +32,6 @@ describe('Acessar o site',()=>{
                 .should('be.disabled')
             cy.get('#id_campo_descricao')
                 .should('not.be.enabled')
-
-//Dados enviados com sucesso. Clique no botão RESETAR para reiniciar o formulário.
 
             //cy.pause()
             //cy.screenshot()
