@@ -1,5 +1,7 @@
 ///<reference types="cypress"/>
 
+import el from '../support/locators'
+
 describe('Acessar o site',()=>{
     before(()=>{
         cy.visit('https://qautomatizado-db08c.web.app/')
@@ -9,22 +11,29 @@ describe('Acessar o site',()=>{
 
 
         it('',()=>{
-            cy.get('input#id_campo_nome').should('exist').and('be.visible').and('be.enabled')
+            cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
+                .should('exist').and('be.visible').and('be.enabled')
 
             //Campos de Texto
-            cy.get('input#id_campo_nome').click().type('João')
+            cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
+                .click()
+                .type('João')
 
-            cy.xpath('//input[@name="sobrenome"]').click().type('Barro').screenshot('sobrenome')
+            cy.xpath(INPUT_LASTNAME_FIELD)
+                .click()
+                .type('Barro')
 
-            cy.get('input#id_campo_email').click().type('joaobarro@birds.com').debug()
+            cy.get(INPUT_EMAIL_FIELD)
+                .click()
+                .type('joaobarro@birds.com')
+                .debug()
 
-            cy.pause()
-
-            cy.get('textarea#id_campo_descricao').type('Eu sou um pássaro da família Barro, muito prazer.')
+            cy.get(TEXTAREA_DESCRIPTION_FIELD)
+                .type('Eu sou um pássaro da família Barro, muito prazer.')
             
 
             //Botões de radio
-            cy.get('input#id_Linkedin').check()
+            cy.get(el.RADIO_BUTTON.INPUT_LINKEDIN_RADIO_BUTTON).check()
 
             //Checkbox
             cy.get('input#id_checkbox_selenium').check()
@@ -54,7 +63,20 @@ describe('Acessar o site',()=>{
             })
 
 
-            cy.screenshot()
+            cy.get('#btn_confirm')
+                .click()
+            cy.get('.Toastify__toast-body > :nth-child(2)')
+                .should('contain.text','Dados enviados com sucesso.')
+            cy.get('#id_campo_nome')
+                .should('be.disabled')
+            cy.get('#id_campo_descricao')
+                .should('not.be.enabled')
+
+//Dados enviados com sucesso. Clique no botão RESETAR para reiniciar o formulário.
+
+            //cy.pause()
+            //cy.screenshot()
+            //cy.reload()
             
 
         })
