@@ -50,3 +50,31 @@ Cypress.Commands.add('fillOutTextFields', () => {
     cy.get(el.CAMP_TXT.TEXTAREA_DESCRIPTION_FIELD)
         .type(data.descricao)
 })
+
+Cypress.Commands.add('checkAndUncheckCheckbox',()=>{
+    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM).check()
+
+    cy.get(el.CHECK_BOX.INPUT_CHECKBOX_ROBOT).check() 
+
+    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM).uncheck() //Desmarca a caixa de seleção
+})
+
+Cypress.Commands.add('checkSelectBoxes',()=>{
+    cy.get(el.SELECT.SELECT_SIMPLE).select('C#')
+
+    cy.get(el.SELECT.DIV_SELECT_MULTIPLE).type('JavaScript')
+    cy.timeout({timeout:5000})
+    cy.get('body').type('{enter}')
+
+    cy.wait(2000)
+
+
+    const tags = ['C#','PYTHON','JAVASCRIPT']
+    tags.forEach(valor =>{
+        cy.get(el.SELECT.INPUT_SELECT_MULTIPLE)
+            .type(valor)
+            .type('{downArrow}')
+            .type('{enter}')
+
+    })
+})
