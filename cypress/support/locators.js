@@ -1,4 +1,7 @@
 const locators = {
+    ENTRANCE_BUTTON:{
+        BUTTON_ENTRANCE: 'button.MuiButtonBase-root'
+    },
     CAMP_TXT:{
         INPUT_NAME_FIELD: 'input#id_campo_nome',
         INPUT_LASTNAME_FIELD: '//input[@name="sobrenome"]',
@@ -16,6 +19,12 @@ const locators = {
         SELECT_SIMPLE: 'select#id_campo_linguagemProgramacaoSimples',
         DIV_SELECT_MULTIPLE: 'div#mui-component-select-linguagemProgramacao',
         INPUT_SELECT_MULTIPLE: 'input[name="multiplaSelecao"]'
+    },
+    CONFIRM_BUTTON: {
+       BUTTON_CONFIRM: "#btn_confirm"
+    },
+    FINAL_VALIDATION: {
+        TOAST: ".Toastify__toast-body > :nth-child(2)"
     }
 }
 

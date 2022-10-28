@@ -77,4 +77,17 @@ Cypress.Commands.add('checkSelectBoxes',()=>{
             .type('{enter}')
 
     })
+
+
+Cypress.Commands.add('finalValitation',()=>{
+    cy.get(el.CONFIRM_BUTTON.BUTTON_CONFIRM).click()
+
+    cy.get(el.FINAL_VALIDATION.TOAST)
+        .should('contain.text','Dados enviados com sucesso.')
+    cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
+        .should('be.disabled')
+    cy.get(el.CAMP_TXT.TEXTAREA_DESCRIPTION_FIELD)
+        .should('not.be.enabled')
+})
+
 })
