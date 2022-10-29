@@ -24,19 +24,11 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import el from './locators'
+import el from './elements'
 
-let data = {
-    nome: "João",
-    sobrenome: "Barro",
-    email: "joaobarro@birds.com",
-    descricao: "Eu sou um pássaro da família Barro, muito prazer."
-}
-
-Cypress.Commands.add('fillOutTextFields', () => {
+Cypress.Commands.add('fillOutTextFields', (data) => {
     cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
-    .should('exist').and('be.visible').and('be.enabled')
-//Campos de Texto
+        .should('exist').and('be.visible').and('be.enabled')
     cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
         .click()
         .type(data.nome)
@@ -52,22 +44,25 @@ Cypress.Commands.add('fillOutTextFields', () => {
 })
 
 Cypress.Commands.add('checkAndUncheckCheckbox',()=>{
-    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM).check()
-
-    cy.get(el.CHECK_BOX.INPUT_CHECKBOX_ROBOT).check() 
-
-    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM).uncheck() //Desmarca a caixa de seleção
+    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM)
+        .check()
+    cy.get(el.CHECK_BOX.INPUT_CHECKBOX_ROBOT)
+        .check() 
+    cy.get(el.CHECK_BOX.IMPUT_CHECKBOX_SELENIUM)
+        .uncheck() //Desmarca a caixa de seleção
 })
 
 Cypress.Commands.add('checkSelectBoxes',()=>{
-    cy.get(el.SELECT.SELECT_SIMPLE).select('C#')
+    cy.get(el.SELECT.SELECT_SIMPLE)
+        .select('C#')
 
-    cy.get(el.SELECT.DIV_SELECT_MULTIPLE).type('JavaScript')
+    cy.get(el.SELECT.DIV_SELECT_MULTIPLE)
+        .type('JavaScript')
     cy.timeout({timeout:5000})
-    cy.get('body').type('{enter}')
+    cy.get('body')
+        .type('{enter}')
 
     cy.wait(2000)
-
 
     const tags = ['C#','PYTHON','JAVASCRIPT']
     tags.forEach(valor =>{
@@ -75,19 +70,16 @@ Cypress.Commands.add('checkSelectBoxes',()=>{
             .type(valor)
             .type('{downArrow}')
             .type('{enter}')
-
     })
-
+})
 
 Cypress.Commands.add('finalValitation',()=>{
-    cy.get(el.CONFIRM_BUTTON.BUTTON_CONFIRM).click()
-
+    cy.get(el.CONFIRM_BUTTON.BUTTON_CONFIRM)
+        .click()
     cy.get(el.FINAL_VALIDATION.TOAST)
         .should('contain.text','Dados enviados com sucesso.')
     cy.get(el.CAMP_TXT.INPUT_NAME_FIELD)
         .should('be.disabled')
     cy.get(el.CAMP_TXT.TEXTAREA_DESCRIPTION_FIELD)
         .should('not.be.enabled')
-})
-
 })

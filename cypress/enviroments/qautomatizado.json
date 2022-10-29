@@ -1,0 +1,8 @@
+{
+    "extends": "../../cypress.config.js",
+    "baseUrl": "https://qautomatizado-db08c.web.app",
+    "env":{
+        "enviroment": "qautomatizado",
+        "urlFormulario": "/formulario"
+    }
+}

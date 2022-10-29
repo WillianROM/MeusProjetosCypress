@@ -1,40 +1,35 @@
 ///<reference types="cypress"/>
 
-import el from '../support/locators'
+import el from '../../support/qautomatizado/elements'
+import env from '../../enviroments/qautomatizado'
+
+let dataQautomatizado
 
 describe('Acessar o site',()=>{
     before(()=>{
-        cy.visit('/')
+        cy.fixture('data/data.qautomatizado').then((data) =>{
+            dataQautomatizado = data
+        })
+
+        cy.visit(env.baseUrl)
         cy.get(el.ENTRANCE_BUTTON.BUTTON_ENTRANCE).click()
     })
 
 
         it('Should fill out the form',()=>{
-            //Preenchimento das caixas de texto
-            cy.fillOutTextFields()            
-
-            //Botões de radio
+            cy.fillOutTextFields(dataQautomatizado)            
             cy.get(el.RADIO_BUTTON.INPUT_LINKEDIN_RADIO_BUTTON).check()
-
-            //Checkbox
             cy.checkAndUncheckCheckbox()
-     
-            //Caixas de Seleção
             cy.checkSelectBoxes()
-
-            //Validação final
             cy.finalValitation()
-
-            //Outros códigos Cypress
+            //Outros códigos Cypress que cou manter nesse projeto para conhecimento
             //cy.pause()
             //cy.screenshot()
             //cy.reload()
-            
-
         })
  
-
-        it.skip('TIPOS DE VALIDAÇÃO',()=>{
+        //Validação visto nas aulas do QAutomatizado que vou manter nesse projeto para conhecimento:
+        it('TIPOS DE VALIDAÇÃO',()=>{
             let a = 1
             let b = 2
 
@@ -55,7 +50,4 @@ describe('Acessar o site',()=>{
             expect(obj).to.have.property('b')
             expect(obj).eql({a:1,b:2})
         })
-        
-   
-    
 })
