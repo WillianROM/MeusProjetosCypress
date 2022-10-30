@@ -1,0 +1,9 @@
+{
+    "name": "João",
+    "lastName": "De Barro",
+    "email": "joaodebarro@birds.com",
+    "ticketQuantity": "2",
+    "specialRequestsMessage": "I want a cozy nest to watch the event.",
+    "textButton": "Confirm Tickets",
+    "textToastSucess": "Ticket(s) successfully ordered."
+}
