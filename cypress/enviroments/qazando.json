@@ -1,0 +1,4 @@
+{
+    "extends": "../../cypress.config.js",
+    "baseUrl": "http://automationpratice.com.br/"
+}
