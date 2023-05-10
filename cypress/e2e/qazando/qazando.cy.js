@@ -17,10 +17,19 @@ describe('Acesso ao site', () => {
     })
 
 
-    it('Cadastro no Newsletter com sucesso', ()=>{
-       cy.cadastroNoNewsletterComSucesso(dataQazando.email)
-        cy.get(el.FINAL_VALIDATION.DIV_THANK_YOU)
-            .should('have.text', 'Thank you for your Subscribtion')
+    it('Cadastro no Newsletter com sucesso usando clique', ()=>{
+        cy.cadastroNoNewsletterComSucesso(dataQazando.email)
+        cy.validacaoFinalCadastroNoNewsletter()
     })
+
+
+    it('Cadastro no Newsletter com sucesso apertando Enter', ()=>{
+        cy.cadastroNoNewsletterComSucessoComEnter(dataQazando.email)
+        cy.validacaoFinalCadastroNoNewsletter()
+     })
+
+
+
+
 
 })
