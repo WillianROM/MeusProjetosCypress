@@ -35,8 +35,25 @@ Cypress.Commands.add('cadastroNoNewsletterComSucesso', (email) => {
 })
 
 
+Cypress.Commands.add('cadastroNoNewsletterComSucessoComEnter', (email) => {
+    cy.get(el.CAMP_TXT.INPUT_EMAIL)
+        .type(email + '{enter}')
+})
 
 
-
-
+Cypress.Commands.add('validacaoFinalCadastroNoNewsletter', (email) => {
+    cy.get(el.FINAL_VALIDATION.H2_SUCESS)
+        .should('be.visible')
+        .should('have.text', 'Success')
+    cy.get(el.FINAL_VALIDATION.DIV_THANK_YOU)
+        .should('be.visible')
+        .should('have.text', 'Thank you for your Subscribtion')
+    cy.get(el.BUTTONS.BUTTON_OK)
+        .click()
+    cy.wait(500)
+    cy.get(el.FINAL_VALIDATION.H2_SUCESS)
+        .should('not.exist')
+    cy.get(el.FINAL_VALIDATION.DIV_THANK_YOU)
+        .should('not.exist')
+})
 
